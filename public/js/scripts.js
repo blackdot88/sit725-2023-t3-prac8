@@ -42,10 +42,19 @@ const addCards = (items) => {
   });
 };
 
+const getProjects = () => {
+  $.get("/api/projects", (response) => {
+    if (response.statusCode == 200) {
+      addCards(response.data);
+    }
+  });
+};
+
 $(document).ready(function () {
   $(".materialboxed").materialbox();
   $("#clickMeButton").click(() => {
     clickMe();
   });
-  addCards(cardList);
+  getProjects();
+  $(".modal").modal();
 });
