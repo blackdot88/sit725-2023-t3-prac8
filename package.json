@@ -4,7 +4,8 @@
   "description": "sit 725 week 3 prac",
   "main": "server.js",
   "scripts": {
-    "test": "node server.js"
+    "start": "node server.js",
+    "test" : "mocha --reporter spec"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,9 @@
   },
   "homepage": "https://github.com/blackdot88/sit725-2023-t3-prac3#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "chai": "^4.3.10",
+    "express": "^4.18.2",
+    "mocha": "^10.2.0",
+    "request": "^2.88.2"
   }
 }
