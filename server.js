@@ -1,5 +1,7 @@
 var express = require("express");
 var app = express();
+let http = require("http").createServer(app);
+let io = require("socket.io")(http);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -39,9 +41,21 @@ app.get("/addTwoNumbers/:firstNumber/:secondNumber", function (req, res, next) {
   }
 });
 
+io.on("connection", (socket) => {
+  console.log("a user connected");
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+  });
+  setInterval(() => {
+    x = parseInt(Math.random() * 10);
+    socket.emit("number", x);
+    console.log("Emmiting Number " + x);
+  }, 1000);
+});
+
 app.use(express.static(__dirname + "/public"));
 var port = process.env.port || 3000;
 
-app.listen(port, () => {
-  console.log("App listening to: " + port);
+http.listen(port, () => {
+  console.log("Express server started. Listening to: " + port);
 });
