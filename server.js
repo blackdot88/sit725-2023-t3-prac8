@@ -54,7 +54,7 @@ io.on("connection", (socket) => {
 });
 
 app.use(express.static(__dirname + "/public"));
-var port = process.env.port || 3000;
+var port = process.env.port || 8080;
 
 http.listen(port, () => {
   console.log("Express server started. Listening to: " + port);
